@@ -5,36 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Letter</title>
     <style>
-        
-        p{
-            color: rgb(217, 53, 141);
-            font-weight: 1.5px;
-            font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        /* 1. Setup the Body (The Parent Container) */
+        body {
+            /* Image settings */
+            background-image: url(main.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            
+            /* Centering Logic starts here */
+            margin: 0;                /* Removes default browser spacing */
+            min-height: 100vh;        /* Makes body at least 100% of the viewport height */
+            display: flex;            /* Enables Flexbox layout */
+            justify-content: center;  /* Centers horizontally (Left/Right) */
+            align-items: center;      /* Centers vertically (Up/Down) */
         }
+
+        /* 2. Setup the Div (The Letter Box) */
         div {
-            border: 1px solid rgb(104, 6, 146);
+            border: 3px solid rgb(104, 6, 146); /* Combined border properties */
             border-radius: 5px;
-            border-width: 3px;
             padding: 20px;
-            width: 70%;
+            
+            /* Responsive Width */
+            width: 80%;               /* Takes 80% width on mobile */
+            max-width: 600px;         /* Stops it from getting too big on PC */
+
             background-image: url(background.jpg);
             background-size: cover;
-            background-position: center center;
-            margin: auto;
-
+            background-position: center;
+            
             box-shadow: 2px 2px 20px rgba(2, 1, 2, 0.999);
             line-height: 1.2;
             max-height: 60vh;
             overflow-y: auto;
-
-
-
-
         }
-        body{
-            background-image: url(main.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
+
+        p {
+            color: rgb(217, 53, 141);
+            font-weight: bold;        /* Fixed: '1.5px' is not valid for font-weight */
+            font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         }
     </style>
 </head>
@@ -46,20 +55,17 @@
             I love you so much I designed this page just for you for writing my letter on this 
             website just for you.
             Today I just created this html page you can see real code on this github
-            <a href="https://github.com/aditya7400/aditya7400.github.io", style="color: blueviolet;", target="_blank",>page</a>
+            <a href="https://github.com/aditya7400/aditya7400.github.io" style="color: blueviolet;" target="_blank">page</a>
             for now byi 😊
-
-            
         </p>
         
-    
         <p>
             Regards Aditya
         </p>
     </div>
 </body>
-
 </html>
+
 
 
 
