@@ -8,9 +8,9 @@
         /* 1. Setup the Body (The Parent Container) */
         body {
             /* Image settings */
-            background-image: url(main.jpg);
+            /* background-image: url(main.jpg);
             background-size: cover;
-            background-repeat: no-repeat;
+            background-repeat: no-repeat; */
             
             /* Centering Logic starts here */
             margin: 0;                /* Removes default browser spacing */
@@ -49,20 +49,129 @@
 </head>
 <body>
     <div>
-        <p>Hello Dear</p>
-        <p>
-            Hi baby missing you so much sweetheart I love you baby today I am studying python and then I will read a book
-            Annd I created a program in python which will greet according to time time goodmorning or goodnight
-            and about yesterday night it was ......................😅😅
-            for now only this much byi 😊
-        </p>
         
         <p>
-            Regards Aditya
+            
+import pygame as p
+import random 
+white = (255,255,255)
+red = (255,0,0)
+black = (0,0,0)
+def plot_snk (gameWindow,color,snk_list,snk_size):
+    for x,y in snk_list:
+        p.draw.rect(gameWindow,color,[x,y,snk_size,snk_size])
+        
+
+def text_screen(text,color,x,y):
+    font = p.font.SysFont(None,55)
+    screen_text = font.render(text,True,color)
+    gameWindow.blit(screen_text,[x,y])
+# x = p.init()
+# print(type(x))
+p.init()
+width = 700
+height = 600
+gameWindow = p.display.set_mode((width,height)) #width and height 
+p.display.set_caption("HELLO")
+clock = p.time.Clock()
+#game specific variables
+
+# gameWindow.fill(white)
+# p.display.update()
+
+def Game_loop():
+    # width = 700
+    # height = 600
+    exit_game = False
+    game_over = False
+    snake_x = 45
+    snake_y = 55
+    food_x = random.randint(1,width-1)
+    food_y = random.randint(1,height-1)
+    snk_length = 1
+    snk_list = []
+
+    snake_size = 20
+    # snake_size_y = 20
+    velocity_x = 0
+    velocity_y = 0
+    fps = 30
+    score = 0
+    
+       
+    while not exit_game:
+        
+        if game_over:
+            gameWindow.fill(white)
+            text_screen("GAME OVER Press Enter to Continue",red,10,200)
+            p.display.update()
+            for event in p.event.get():
+                if event.type == p.QUIT:
+                    exit_game = True
+                if event.type == p.KEYDOWN:
+                    if event.key ==p.K_RETURN:
+                        Game_loop()
+                         
+
+        else:
+            for event in p.event.get():
+            
+                if event.type == p.QUIT:
+                    exit_game = True
+                if event.type == p.KEYDOWN:
+                    if event.key == p.K_w:
+                        velocity_y = -7
+                        velocity_x = 0
+                    if event.key == p.K_s:
+                        velocity_y = 7
+                        velocity_x = 0
+                    if event.key == p.K_d:
+                        velocity_x = 7
+                        velocity_y = 0
+                    if event.key == p.K_a:
+                        velocity_x = -7
+                        velocity_y = 0 
+            snake_x = snake_x + velocity_x
+            snake_y = snake_y + velocity_y
+            
+            # if 100 > abs(snake_x):
+            #     if abs(snake_x) < 3:
+            #         snake_x = width
+            
+            if abs(snake_x-food_x) < 10 and abs(snake_y - food_y) <10:
+                food_x = random.randint(1,width-1)
+                food_y = random.randint(1,height-1)
+                score +=1
+                snk_length+=5
+            gameWindow.fill(white)
+            text_screen(f"Score {score*10}",black,10,10)
+            head = []
+            head.append(snake_x)
+            head.append(snake_y)
+            snk_list.append(head)
+            
+            p.draw.rect(gameWindow,red,[food_x,food_y,20,20])
+            plot_snk(gameWindow,black,snk_list,snake_size)
+            if len(snk_list) > snk_length:
+                del snk_list[0]
+            if head in snk_list[:-1]:
+                game_over = True
+            if snake_x < 0 or snake_y < 0 or snake_x > width or snake_y > height:
+                game_over = True
+            # p.draw.rect(gameWindow,black,[snake_x,snake_y,snake_size_x,snake_size_y])
+            p.display.update()
+            clock.tick(fps) 
+    p.quit()
+    quit()
+
+Game_loop()
         </p>
+        
+       
     </div>
 </body>
 
 </html>
+
 
 
